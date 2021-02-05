@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  node-app:
+    container_name: node-app-test
+    environment:
+      NODE_ENV: test
+    command: yarn test
+  mongo:
+    logging:
+      driver: none
