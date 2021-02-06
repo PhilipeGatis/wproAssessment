@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-@MongoEntity(collection="Assessment")
+@MongoEntity(collection="CompetencePolicy", database = "Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.Map;
 import java.util.UUID;
 
-@MongoEntity(collection="Assessment")
+@MongoEntity(collection="CriteriaPolicy", database = "Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

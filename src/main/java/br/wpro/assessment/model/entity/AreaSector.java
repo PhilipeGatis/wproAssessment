@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@MongoEntity(collection="Assessment")
+@MongoEntity(collection="AreaSector", database = "Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

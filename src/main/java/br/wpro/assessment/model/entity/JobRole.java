@@ -9,7 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.UUID;
 
-@MongoEntity(collection="Assessment")
+@MongoEntity(collection="JobRole", database = "Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
