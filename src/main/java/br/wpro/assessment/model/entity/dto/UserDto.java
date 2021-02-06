@@ -1,8 +1,8 @@
-package br.wpro.assessment.model.entity;
+package br.wpro.assessment.model.entity.dto;
 
 
 import br.wpro.assessment.config.RolesEnum;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import br.wpro.assessment.model.entity.User;
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.*;
@@ -10,29 +10,24 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.UUID;
 
-@MongoEntity(collection="Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class User extends PanacheMongoEntity {
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID uid;
     String firstName;
     String lastName;
     String login;
-    String password;
 
     @Enumerated(EnumType.STRING)
     RolesEnum role = RolesEnum.USER;
 
-
-    @Builder.Default
-    Boolean active = Boolean.FALSE;
+    public static UserDto of(User user){
+        return UserDto.builder().firstName(user.getFirstName()).lastName(user.getLastName()).login(user.getLogin()).role(user.getRole()).build();
+    }
 
 
 }

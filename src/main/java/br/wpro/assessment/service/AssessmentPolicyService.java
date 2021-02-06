@@ -8,20 +8,16 @@ import java.util.List;
 @ApplicationScoped
 public class AssessmentPolicyService {
 
-
     public AssessmentPolicy save(AssessmentPolicy policy) {
-
         policy.persist();
-
         return policy;
-
     }
 
-    public AssessmentPolicy getById(Long id){
+    public AssessmentPolicy getById(Long id) {
         return AssessmentPolicy.findById(id);
     }
 
-    public List<AssessmentPolicy> list(){
+    public List<AssessmentPolicy> list() {
         return AssessmentPolicy.listAll();
     }
 

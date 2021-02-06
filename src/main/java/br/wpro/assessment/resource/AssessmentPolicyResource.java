@@ -35,14 +35,14 @@ public class AssessmentPolicyResource {
     }
 
     @POST
-    public AssessmentPolicy save(AssessmentPolicy policy){
+    @Path("/create")
+    public AssessmentPolicy create(@PathParam String name){
+        AssessmentPolicy policy = AssessmentPolicy.builder().name(name).build();
         return assessmentPolicyService.save(policy);
     }
 
-    @POST
-    @Path("/create")
-    public AssessmentPolicy create(){
-        AssessmentPolicy policy = AssessmentPolicy.builder().name("Pudim").active(true).build();
+    @PUT
+    public AssessmentPolicy save(AssessmentPolicy policy){
         return assessmentPolicyService.save(policy);
     }
 

@@ -24,5 +24,7 @@ public class JobRole extends PanacheMongoEntity {
     String externalId;
     String name;
 
+    @Builder.Default
+    Boolean active = Boolean.FALSE;
 
 }

@@ -22,5 +22,4 @@ public class AreaSector extends PanacheMongoEntity {
     String externalId;
     String name;
 
-
 }
