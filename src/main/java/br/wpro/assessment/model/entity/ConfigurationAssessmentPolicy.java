@@ -5,29 +5,27 @@ import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.UUID;
 
-@MongoEntity(collection="AssessmentPolicy")
+@MongoEntity(collection="Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class AssessmentPolicy extends PanacheMongoEntity {
-
-    String name;
+public class ConfigurationAssessmentPolicy extends PanacheMongoEntity {
 
     @Builder.Default
     Boolean active = Boolean.FALSE;
 
 
-    //Child compentences
-    List<CompetencePolicy> competences;
+    //Many COofigutarions fields that will be definited
 
-    //Not a Child, just a left relation
-    ConfigurationAssessmentPolicy configurationAssessmentPolicy;
 
 }

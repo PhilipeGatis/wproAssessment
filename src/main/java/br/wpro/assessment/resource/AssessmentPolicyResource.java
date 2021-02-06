@@ -39,5 +39,11 @@ public class AssessmentPolicyResource {
         return assessmentPolicyService.save(policy);
     }
 
+    @POST
+    @Path("/create")
+    public AssessmentPolicy create(){
+        AssessmentPolicy policy = AssessmentPolicy.builder().name("Pudim").active(true).build();
+        return assessmentPolicyService.save(policy);
+    }
 
 }

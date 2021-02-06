@@ -1,13 +1,16 @@
-version: '3'
+version: "3.1"
 
 services:
-  postgres:
-    image: postgres:10.5
-    healthcheck:
-      test: psql postgres --command "select 1" -U postgres
+  mongo:
+    image: mongo
     ports:
-      - "5432:5432"
+      - "27017:27017"
+    volumes:
+      - dbdata:/data/db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres
+      MONGO_INITDB_ROOT_USERNAME: wpro
+      MONGO_INITDB_ROOT_PASSWORD: wpro
+
+volumes:
+  dbdata:
+
