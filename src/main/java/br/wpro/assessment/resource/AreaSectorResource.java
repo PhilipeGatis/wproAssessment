@@ -49,8 +49,13 @@ public class AreaSectorResource {
 
     @POST
     @Path("/create")
-    public AreaSector create(String name) {
-        return service.save(AreaSector.builder().name(name).build());
+    public AreaSector create(AreaSector areaSector) {
+        return service.save(areaSector);
     }
 
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam String id) {
+        service.delete(id);
+    }
 }

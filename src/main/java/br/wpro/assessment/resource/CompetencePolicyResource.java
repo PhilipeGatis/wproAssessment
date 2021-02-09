@@ -37,14 +37,19 @@ public class CompetencePolicyResource {
 
     @POST
     @Path("/create")
-    public CompetencePolicy create(@PathParam String name){
-        CompetencePolicy policy = CompetencePolicy.builder().name(name).build();
+    public CompetencePolicy create(CompetencePolicy policy){
         return service.save(policy);
     }
 
     @PUT
     public CompetencePolicy save(CompetencePolicy policy) {
         return service.save(policy);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam String id) {
+        service.delete(id);
     }
 
 }

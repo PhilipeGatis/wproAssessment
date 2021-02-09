@@ -30,5 +30,9 @@ public class JobRoleService {
         return JobRole.listAll();
     }
 
+    public void delete(String id){
+        JobRole.deleteById(id);
+    }
+
 
 }

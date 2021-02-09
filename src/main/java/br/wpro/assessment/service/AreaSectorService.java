@@ -1,7 +1,6 @@
 package br.wpro.assessment.service;
 
 import br.wpro.assessment.model.entity.AreaSector;
-import br.wpro.assessment.model.entity.JobRole;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
@@ -26,4 +25,7 @@ public class AreaSectorService {
         return AreaSector.listAll();
     }
 
+    public void delete(String id) {
+        AreaSector.deleteById(id);
+    }
 }

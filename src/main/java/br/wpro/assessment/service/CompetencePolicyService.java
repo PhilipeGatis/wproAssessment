@@ -1,6 +1,7 @@
 package br.wpro.assessment.service;
 
 import br.wpro.assessment.model.entity.CompetencePolicy;
+import br.wpro.assessment.model.entity.JobRole;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
@@ -21,4 +22,8 @@ public class CompetencePolicyService {
         return CompetencePolicy.listAll();
     }
 
+
+    public void delete(String id){
+        CompetencePolicy.deleteById(id);
+    }
 }

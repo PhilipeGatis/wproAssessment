@@ -47,8 +47,14 @@ public class JobRoleResource {
 
     @POST
     @Path("/create")
-    public JobRole create(String name) {
-        return service.save(JobRole.builder().name(name).build());
+    public JobRole create(JobRole role) {
+        return service.save(role);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam String id) {
+        service.delete(id);
     }
 
 }
