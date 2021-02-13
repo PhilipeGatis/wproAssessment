@@ -18,7 +18,6 @@ public class AssessmentPolicyService {
 
     }
 
-
     public AssessmentPolicy update(AssessmentPolicy policy) {
         policy.persistOrUpdate();
         return policy;
