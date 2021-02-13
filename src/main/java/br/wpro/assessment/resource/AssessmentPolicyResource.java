@@ -2,11 +2,13 @@ package br.wpro.assessment.resource;
 
 import br.wpro.assessment.model.entity.AssessmentPolicy;
 import br.wpro.assessment.service.AssessmentPolicyService;
+import org.bson.types.ObjectId;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -19,37 +21,32 @@ public class AssessmentPolicyResource {
     AssessmentPolicyService service;
 
     @GET
-    @Path("/hello")
-    public String hello() {
-        return "Hello AssessmentPolicies";
+    public Response listAll() {
+        return Response.ok(service.list()).build();
     }
 
-    @GET
-    public List<AssessmentPolicy> listAll() {
-        return service.list();
+    @POST
+    public Response create(AssessmentPolicy policy) {
+        return Response.ok(service.save(policy)).build();
     }
 
     @GET
     @Path("/{id}")
-    public AssessmentPolicy get(@PathParam String id) {
-        return service.getById(id);
-    }
-
-    @POST
-    @Path("/create")
-    public AssessmentPolicy create(AssessmentPolicy policy) {
-        return service.save(policy);
+    public Response get(@PathParam String id) {
+        return Response.ok(service.getById(new ObjectId(id))).build();
     }
 
     @PUT
-    public AssessmentPolicy save(AssessmentPolicy policy) {
-        return service.save(policy);
+    @Path("/{id}")
+    public Response update(@PathParam String id, AssessmentPolicy policy) {
+        policy.id = new ObjectId(id);
+        return Response.ok(service.update(policy)).build();
     }
 
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam String id) {
-        service.delete(id);
+        service.delete(new ObjectId(id));
     }
 
 

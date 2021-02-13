@@ -1,13 +1,10 @@
 package br.wpro.assessment.model.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @MongoEntity(collection="AssessmentPolicy", database = "Assessment")
 @NoArgsConstructor
@@ -19,6 +16,7 @@ import java.util.UUID;
 public class AssessmentPolicy extends PanacheMongoEntity {
 
     String name;
+    String description;
 
     @Builder.Default
     Boolean active = Boolean.FALSE;

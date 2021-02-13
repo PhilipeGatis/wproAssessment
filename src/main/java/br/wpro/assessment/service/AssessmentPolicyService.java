@@ -2,6 +2,7 @@ package br.wpro.assessment.service;
 
 import br.wpro.assessment.model.entity.AssessmentPolicy;
 import br.wpro.assessment.model.entity.CompetencePolicy;
+import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
@@ -14,7 +15,12 @@ public class AssessmentPolicyService {
         return policy;
     }
 
-    public AssessmentPolicy getById(String id) {
+    public AssessmentPolicy update(AssessmentPolicy policy) {
+        policy.update();
+        return policy;
+    }
+
+    public AssessmentPolicy getById(ObjectId id) {
         return AssessmentPolicy.findById(id);
     }
 
@@ -22,7 +28,7 @@ public class AssessmentPolicyService {
         return AssessmentPolicy.listAll();
     }
 
-    public void delete(String id) {
+    public void delete(ObjectId id) {
         AssessmentPolicy.deleteById(id);
     }
 

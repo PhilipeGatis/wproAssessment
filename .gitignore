@@ -30,5 +30,6 @@ npm-debug.log*
 package-lock.json
 
 .vscode/
+maven-wrapper.jar
 .idea/
 *.iml
