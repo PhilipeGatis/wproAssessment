@@ -22,7 +22,7 @@ import java.util.UUID;
 public class CriteriaPolicy {
 // extends PanacheMongoEntity {
 
-    UUID id;
+    String id= UUID.randomUUID().toString();
 
     String name;
 
@@ -38,5 +38,14 @@ public class CriteriaPolicy {
     @Builder.Default
     CriteriaValueTypeEnum valueType = CriteriaValueTypeEnum.INTERVAL_NUMBER;
     String rule = "1-5"; // interval - , list ; , Percentage 0%, Text begin @
+
+    public void updateFrom(CriteriaPolicy policy){
+        this.justification = policy.justification;
+        this.name = policy.name;
+        this.question = policy.question;
+        this.justificationRequired = policy.justificationRequired;
+        this.valueType = policy.valueType;
+        this.rule = policy.rule;
+    }
 
 }

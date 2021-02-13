@@ -1,8 +1,10 @@
 package br.wpro.assessment.service;
 
 import br.wpro.assessment.exception.CompetencePolicyNotFoundException;
+import br.wpro.assessment.exception.CriteriaPolicyNotFoundException;
 import br.wpro.assessment.model.entity.AssessmentPolicy;
 import br.wpro.assessment.model.entity.CompetencePolicy;
+import br.wpro.assessment.model.entity.CriteriaPolicy;
 import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -76,6 +78,69 @@ public class AssessmentPolicyService {
         }
 
         policy.getCompetences().remove(competencePolicyId);
+
+        policy.persistOrUpdate();
+
+    }
+
+
+    /**
+     * CriteriaPolicy
+     */
+    public AssessmentPolicy addCompetenceCriteria(ObjectId assessmentId, String competencePolicyId, CriteriaPolicy criteriaPolicy) {
+        AssessmentPolicy assessmentPolicy = getById(assessmentId);
+
+        if (assessmentPolicy.getCompetences() == null || assessmentPolicy.getCompetences().isEmpty() || !assessmentPolicy.getCompetences().containsKey(competencePolicyId)) {
+            throw new CompetencePolicyNotFoundException("No CompecentePolicy with Id "+competencePolicyId+ " to Add Criterea "+criteriaPolicy);
+        }
+
+        CompetencePolicy competencePolicy = assessmentPolicy.getCompetences().get(competencePolicyId);
+
+        if(competencePolicy.getCritereas() == null || competencePolicy.getCritereas().isEmpty()){
+            competencePolicy.setCritereas(new HashMap<>());
+        }
+
+        competencePolicy.getCritereas().put(criteriaPolicy.getId(), criteriaPolicy);
+
+        assessmentPolicy.persistOrUpdate();
+
+        return assessmentPolicy;
+    }
+
+    public AssessmentPolicy updateCompetenceCriteria(ObjectId assessmentId, String competencePolicyId, String criteriaId, final CriteriaPolicy criteriaPolicy) {
+
+        AssessmentPolicy policy = getById(assessmentId);
+
+        if (policy.getCompetences() == null || policy.getCompetences().isEmpty() || !policy.getCompetences().containsKey(competencePolicyId)) {
+            throw new CompetencePolicyNotFoundException(competencePolicyId);
+        }
+
+        final CompetencePolicy competencePolicy = policy.getCompetences().get(competencePolicyId);
+
+        final CriteriaPolicy criteriaPolicyOrign = competencePolicy.getCritereas().get(criteriaId);
+        criteriaPolicyOrign.updateFrom(criteriaPolicy);
+
+        competencePolicy.getCritereas().put(criteriaPolicyOrign.getId(), criteriaPolicyOrign);
+
+        policy.persistOrUpdate();
+
+        return policy;
+    }
+
+    public void removeCompetenceCriterea(ObjectId assessmentId, String competencePolicyId, String critereaPolicyId) throws CompetencePolicyNotFoundException {
+        AssessmentPolicy policy = getById(assessmentId);
+
+        if (policy.getCompetences() == null || policy.getCompetences().isEmpty() || !policy.getCompetences().containsKey(competencePolicyId)) {
+            throw new CompetencePolicyNotFoundException(competencePolicyId);
+        }
+
+        CompetencePolicy competencePolicy =  policy.getCompetences().get(competencePolicyId);
+
+        if (competencePolicy.getCritereas() == null || competencePolicy.getCritereas().isEmpty() || !competencePolicy.getCritereas().containsKey(critereaPolicyId)) {
+            throw new CriteriaPolicyNotFoundException(competencePolicyId);
+        }
+
+        competencePolicy.getCritereas().remove(critereaPolicyId);
 
         policy.persistOrUpdate();
 

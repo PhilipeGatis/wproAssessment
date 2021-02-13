@@ -2,6 +2,7 @@ package br.wpro.assessment.resource;
 
 import br.wpro.assessment.model.entity.AssessmentPolicy;
 import br.wpro.assessment.model.entity.CompetencePolicy;
+import br.wpro.assessment.model.entity.CriteriaPolicy;
 import br.wpro.assessment.service.AssessmentPolicyService;
 import org.bson.types.ObjectId;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -30,45 +31,65 @@ public class AssessmentPolicyResource {
     }
 
     @GET
-    @Path("/{id}")
-    public Response get(@PathParam String id) {
-        return Response.ok(service.getById(new ObjectId(id))).build();
+    @Path("/{assessmentId}")
+    public Response get(@PathParam String assessmentId) {
+        return Response.ok(service.getById(new ObjectId(assessmentId))).build();
     }
 
     @PUT
-    @Path("/{id}")
-    public Response update(@PathParam String id, AssessmentPolicy policy) {
-        policy.id = new ObjectId(id);
+    @Path("/{assessmentId}")
+    public Response update(@PathParam String assessmentId, AssessmentPolicy policy) {
+        policy.id = new ObjectId(assessmentId);
         return Response.ok(service.update(policy)).build();
     }
 
     @DELETE
-    @Path("/{id}")
-    public void delete(@PathParam String id) {
-        service.delete(new ObjectId(id));
+    @Path("/{assessmentId}")
+    public void delete(@PathParam String assessmentId) {
+        service.delete(new ObjectId(assessmentId));
     }
 
 
     /**
      * CompetencyPolicy
      */
-
     @POST
     @Path("/{id}/competencePolicy")
-    public Response addCompetence(@PathParam String id, CompetencePolicy policy) {
-        return Response.ok(service.addCompetence(new ObjectId(id), policy)).build();
+    public Response addCompetence(@PathParam String assessmentId, CompetencePolicy policy) {
+        return Response.ok(service.addCompetence(new ObjectId(assessmentId), policy)).build();
     }
 
     @PUT
     @Path("/{id}/competencePolicy/{compId}")
-    public Response updateCompetence(@PathParam String id, @PathParam String compId, CompetencePolicy policy) {
-        return Response.ok(service.updateCompetence(new ObjectId(id),compId, policy)).build();
+    public Response updateCompetence(@PathParam String assessmentId, @PathParam String competenceId, CompetencePolicy policy) {
+        return Response.ok(service.updateCompetence(new ObjectId(assessmentId),competenceId, policy)).build();
     }
 
     @DELETE
     @Path("/{id}/competencePolicy/{compId}")
-    public void removeCompetence(@PathParam String id, @PathParam String compId) {
-        service.removeCompetence(new ObjectId(id), compId);
+    public void removeCompetence(@PathParam String assessmentId, @PathParam String competenceId) {
+        service.removeCompetence(new ObjectId(assessmentId), competenceId);
+    }
+
+    /**
+     * CriteriaPolicy
+     */
+    @POST
+    @Path("/{assessmentId}/competencePolicy/{competenceId}/criteriaPolicy")
+    public Response addCompetenceCriteria(@PathParam String assessmentId, @PathParam String competenceId, CriteriaPolicy policy) {
+        return Response.ok(service.addCompetenceCriteria(new ObjectId(assessmentId), competenceId, policy)).build();
+    }
+
+    @PUT
+    @Path("/{assessmentId}/competencePolicy/{competenceId}/criteriaPolicy/{criteriaId}")
+    public Response updateCompetenceCriterea(@PathParam String assessmentId, @PathParam String competenceId, @PathParam String criteriaId, CriteriaPolicy policy) {
+        return Response.ok(service.updateCompetenceCriteria(new ObjectId(assessmentId),competenceId, criteriaId,  policy)).build();
+    }
+
+    @DELETE
+    @Path("/{assessmentId}/competencePolicy/{competenceId}/criteriaPolicy/{criteriaId}")
+    public void removeCompetenceCriterea(@PathParam String assessmentId, @PathParam String competenceId, @PathParam String criteriaId) {
+        service.removeCompetenceCriterea(new ObjectId(assessmentId), competenceId, criteriaId);
     }
 
 }

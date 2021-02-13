@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 //@MongoEntity(collection="CompetencePolicy", database = "Assessment")
@@ -36,7 +37,7 @@ public class CompetencePolicy {
     @Builder.Default
     CompetenceCalcEnum calculation = CompetenceCalcEnum.SUM;
 
-    List<CriteriaPolicy> critereas;
+    Map<String, CriteriaPolicy> critereas;
 
     public void updateFrom(CompetencePolicy policy){
         this.active = policy.active;
