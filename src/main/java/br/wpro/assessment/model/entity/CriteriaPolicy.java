@@ -12,14 +12,17 @@ import javax.persistence.*;
 import java.util.Map;
 import java.util.UUID;
 
-@MongoEntity(collection="CriteriaPolicy", database = "Assessment")
+//@MongoEntity(collection="CriteriaPolicy", database = "Assessment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class CriteriaPolicy extends PanacheMongoEntity {
+public class CriteriaPolicy {
+// extends PanacheMongoEntity {
+
+    UUID id;
 
     String name;
 
@@ -35,6 +38,5 @@ public class CriteriaPolicy extends PanacheMongoEntity {
     @Builder.Default
     CriteriaValueTypeEnum valueType = CriteriaValueTypeEnum.INTERVAL_NUMBER;
     String rule = "1-5"; // interval - , list ; , Percentage 0%, Text begin @
-
 
 }

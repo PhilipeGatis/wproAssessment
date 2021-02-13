@@ -1,6 +1,7 @@
 package br.wpro.assessment.resource;
 
 import br.wpro.assessment.model.entity.AssessmentPolicy;
+import br.wpro.assessment.model.entity.CompetencePolicy;
 import br.wpro.assessment.service.AssessmentPolicyService;
 import org.bson.types.ObjectId;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -9,8 +10,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Path("/api/v1/assessmentPolicy")
 @Produces(MediaType.APPLICATION_JSON)
@@ -49,5 +48,27 @@ public class AssessmentPolicyResource {
         service.delete(new ObjectId(id));
     }
 
+
+    /**
+     * CompetencyPolicy
+     */
+
+    @POST
+    @Path("/{id}/competencePolicy")
+    public Response addCompetence(@PathParam String id, CompetencePolicy policy) {
+        return Response.ok(service.addCompetence(new ObjectId(id), policy)).build();
+    }
+
+    @PUT
+    @Path("/{id}/competencePolicy/{compId}")
+    public Response updateCompetence(@PathParam String id, @PathParam String compId, CompetencePolicy policy) {
+        return Response.ok(service.updateCompetence(new ObjectId(id),compId, policy)).build();
+    }
+
+    @DELETE
+    @Path("/{id}/competencePolicy/{compId}")
+    public void removeCompetence(@PathParam String id, @PathParam String compId) {
+        service.removeCompetence(new ObjectId(id), compId);
+    }
 
 }
