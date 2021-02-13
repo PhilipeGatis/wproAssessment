@@ -21,9 +21,12 @@ import java.util.UUID;
 @Builder
 public class ConfigurationAssessmentPolicy extends PanacheMongoEntity {
 
+    String name;
+    String description;
+
+
     @Builder.Default
     Boolean active = Boolean.FALSE;
-
 
     //Many COofigutarions fields that will be definited
 
