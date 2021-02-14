@@ -4,9 +4,8 @@ import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @MongoEntity(collection="AssessmentPolicy", database = "Assessment")
 @NoArgsConstructor
@@ -24,7 +23,7 @@ public class AssessmentPolicy extends PanacheMongoEntity {
     Boolean active = Boolean.FALSE;
 
     //Child compentences
-    Map<String, CompetencePolicy> competences;
+    LinkedHashMap<String, CompetencePolicy> competences;
 
     //Not a Child, just a left relation
     List<String> idConfigurationAssessmentPolicy;

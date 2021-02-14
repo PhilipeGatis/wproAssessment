@@ -1,14 +1,11 @@
 package br.wpro.assessment.model.entity;
 
 import br.wpro.assessment.config.CompetenceCalcEnum;
-import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.*;
-import org.bson.types.ObjectId;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.util.LinkedHashMap;
 import java.util.UUID;
 
 //@MongoEntity(collection="CompetencePolicy", database = "Assessment")
@@ -37,7 +34,7 @@ public class CompetencePolicy {
     @Builder.Default
     CompetenceCalcEnum calculation = CompetenceCalcEnum.SUM;
 
-    Map<String, CriteriaPolicy> critereas;
+    LinkedHashMap<String, CriteriaPolicy> critereas;
 
     public void updateFrom(CompetencePolicy policy){
         this.active = policy.active;

@@ -8,7 +8,7 @@ import br.wpro.assessment.model.entity.CriteriaPolicy;
 import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @ApplicationScoped
@@ -44,7 +44,7 @@ public class AssessmentPolicyService {
         AssessmentPolicy policy = getById(assessmentId);
 
         if (policy.getCompetences() == null || policy.getCompetences().isEmpty()) {
-            policy.setCompetences(new HashMap<>());
+            policy.setCompetences(new LinkedHashMap<>());
         }
 
         policy.getCompetences().put(competencePolicy.getId(), competencePolicy);
@@ -97,7 +97,7 @@ public class AssessmentPolicyService {
         CompetencePolicy competencePolicy = assessmentPolicy.getCompetences().get(competencePolicyId);
 
         if(competencePolicy.getCritereas() == null || competencePolicy.getCritereas().isEmpty()){
-            competencePolicy.setCritereas(new HashMap<>());
+            competencePolicy.setCritereas(new LinkedHashMap<>());
         }
 
         competencePolicy.getCritereas().put(criteriaPolicy.getId(), criteriaPolicy);
