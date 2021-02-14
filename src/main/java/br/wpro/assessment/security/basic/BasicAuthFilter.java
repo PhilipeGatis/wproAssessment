@@ -21,7 +21,6 @@ import java.util.Base64;
 @Slf4j
 public class BasicAuthFilter implements ContainerRequestFilter {
 
-
     public static final String BASIC_AUTH = "Authorization";
 
     @Context
