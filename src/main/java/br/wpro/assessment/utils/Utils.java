@@ -12,6 +12,7 @@ public class Utils {
     private static final String HASH = "82364629WPRO92384PEOLPE9384FHKLHARF3984";
 
     public static String hashPassword(String passwd) {
+
         if(passwd == null || passwd.isEmpty()){
             passwd = "123456";
         }
