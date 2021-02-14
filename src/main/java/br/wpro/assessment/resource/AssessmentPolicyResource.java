@@ -39,8 +39,7 @@ public class AssessmentPolicyResource {
     @PUT
     @Path("/{assessmentId}")
     public Response update(@PathParam String assessmentId, AssessmentPolicy policy) {
-        policy.id = new ObjectId(assessmentId);
-        return Response.ok(service.update(policy)).build();
+        return Response.ok(service.update(new ObjectId(assessmentId), policy)).build();
     }
 
     @DELETE

@@ -28,4 +28,10 @@ public class AssessmentPolicy extends PanacheMongoEntity {
     //Not a Child, just a left relation
     List<String> idConfigurationAssessmentPolicy;
 
+    public void updateFrom(AssessmentPolicy policy){
+        this.active = policy.active;
+        this.description = policy.description;
+        this.name = policy.name;
+    }
+
 }

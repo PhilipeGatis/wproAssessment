@@ -14,15 +14,17 @@ import java.util.List;
 @ApplicationScoped
 public class AssessmentPolicyService {
 
-    public AssessmentPolicy save(AssessmentPolicy policy) {
+    public AssessmentPolicy save(final AssessmentPolicy policy) {
         policy.persistOrUpdate();
         return policy;
 
     }
 
-    public AssessmentPolicy update(AssessmentPolicy policy) {
-        policy.persistOrUpdate();
-        return policy;
+    public AssessmentPolicy update(ObjectId id, final AssessmentPolicy policy) {
+        AssessmentPolicy policyOrigin = AssessmentPolicy.findById(id);
+        policyOrigin.updateFrom(policy);
+        policyOrigin.persistOrUpdate();
+        return policyOrigin;
     }
 
     public AssessmentPolicy getById(ObjectId id) {
