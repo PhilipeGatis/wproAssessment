@@ -54,19 +54,19 @@ public class AssessmentPolicyResource {
      * CompetencyPolicy
      */
     @POST
-    @Path("/{id}/competencePolicy")
+    @Path("/{assessmentId}/competencePolicy")
     public Response addCompetence(@PathParam String assessmentId, CompetencePolicy policy) {
         return Response.ok(service.addCompetence(new ObjectId(assessmentId), policy)).build();
     }
 
     @PUT
-    @Path("/{id}/competencePolicy/{compId}")
+    @Path("/{assessmentId}/competencePolicy/{competenceId}")
     public Response updateCompetence(@PathParam String assessmentId, @PathParam String competenceId, CompetencePolicy policy) {
         return Response.ok(service.updateCompetence(new ObjectId(assessmentId),competenceId, policy)).build();
     }
 
     @DELETE
-    @Path("/{id}/competencePolicy/{compId}")
+    @Path("/{assessmentId}/competencePolicy/{competenceId}")
     public void removeCompetence(@PathParam String assessmentId, @PathParam String competenceId) {
         service.removeCompetence(new ObjectId(assessmentId), competenceId);
     }
