@@ -32,6 +32,9 @@ public class CriteriaPolicy {
     Boolean justification = Boolean.TRUE;
 
     @Builder.Default
+    Boolean active = Boolean.FALSE;
+
+    @Builder.Default
     Boolean justificationRequired = Boolean.FALSE;
 
     @Enumerated(EnumType.STRING)
@@ -46,6 +49,7 @@ public class CriteriaPolicy {
         this.justificationRequired = policy.justificationRequired;
         this.valueType = policy.valueType;
         this.rule = policy.rule;
+        this.active = policy.active;
     }
 
 }

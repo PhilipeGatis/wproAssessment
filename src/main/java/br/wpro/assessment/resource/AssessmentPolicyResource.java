@@ -7,6 +7,7 @@ import br.wpro.assessment.service.AssessmentPolicyService;
 import org.bson.types.ObjectId;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/v1/assessmentPolicy")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RolesAllowed("admin")
 public class AssessmentPolicyResource {
 
     @Inject
