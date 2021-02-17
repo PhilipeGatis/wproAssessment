@@ -10,6 +10,7 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,9 @@ public class UserResource {
     }
 
     @GET
-    @Path("/{login}")
-    public UserDto getByLogin(@PathParam String login) {
-        return userService.getByLogin(login);
+    @Path("/login/{login}")
+    public Response getByLogin(@PathParam String login) {
+        return Response.ok(login).build();
     }
 
     @GET
